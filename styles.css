@@ -122,30 +122,34 @@
   }
   
   .tags label {
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    background: none;
-    border: none;
-  }
-  
-  .tags span {
-    margin-left: 0.4rem;
+    background: rgba(192, 132, 252, 0.15);
     padding: 0.6rem 1.2rem;
     border-radius: 50px;
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s;
-    background: rgba(192, 132, 252, 0.15);
     border: 1px solid rgba(192, 132, 252, 0.3);
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
   }
   
-  .tags input:checked + span {
+  .tags input[type="checkbox"] {
+    margin-right: 0.5rem;
+    accent-color: var(--accent);  /* Makes checkmark cyan/blue */
+  }
+  
+  .tags input:checked + label {  /* Wait—no, since text is after input, use this instead: */
+    /* Actually better: style the label when input inside is checked */
+  }
+  
+  .tags label:has(input:checked) {
     background: var(--purple-pink);
     color: white;
     border-color: var(--purple-pink);
+    box-shadow: 0 0 10px var(--glow-purple);
   }
-  }
+  
   
   .form-buttons {
     display: flex;

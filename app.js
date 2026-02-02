@@ -15,6 +15,7 @@ function renderDreams() {
     // Inside renderDreams(), after creating card:
 card.style.animation = 'fadeIn 0.6s ease-out';
   dreamsList.innerHTML = '';
+  alert('Rendering ' + dreams.length + ' dreams from storage');
   dreams.forEach((dream, index) => {
     const card = document.createElement('div');
     card.className = 'dream-card';

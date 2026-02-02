@@ -136,11 +136,7 @@
   
   .tags input[type="checkbox"] {
     margin-right: 0.5rem;
-    accent-color: var(--accent);  /* Makes checkmark cyan/blue */
-  }
-  
-  .tags input:checked + label {  /* Wait—no, since text is after input, use this instead: */
-    /* Actually better: style the label when input inside is checked */
+    accent-color: var(--accent);
   }
   
   .tags label:has(input:checked) {
@@ -149,7 +145,6 @@
     border-color: var(--purple-pink);
     box-shadow: 0 0 10px var(--glow-purple);
   }
-  
   
   .form-buttons {
     display: flex;
@@ -218,6 +213,7 @@
     button { padding: 0.7rem 1.2rem; font-size: 0.95rem; }
     .glass-card, .dream-card { padding: 1.4rem; border-radius: 18px; }
   }
+  
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }

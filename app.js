@@ -12,50 +12,52 @@ function saveDreams() {
 }
 
 function renderDreams() {
-    // Inside renderDreams(), after creating card:
-card.style.animation = 'fadeIn 0.6s ease-out';
-  dreamsList.innerHTML = '';
-  alert('Rendering ' + dreams.length + ' dreams from storage');
-  dreams.forEach((dream, index) => {
-    const card = document.createElement('div');
-    card.className = 'dream-card';
-    card.innerHTML = `
-      <h3>${dream.title || 'Untitled Dream'}</h3>
-      <div class="date">${new Date(dream.date).toLocaleString()}</div>
-      <p>${dream.content.replace(/\n/g, '<br>')}</p>
-      ${dream.tags && dream.tags.length ? `<div class="tags">Tags: ${dream.tags.join(', ')}</div>` : ''}
-      <button onclick="deleteDream(${index})">Delete</button>
-    `;
-    dreamsList.appendChild(card);
-  });
-}
+    dreamsList.innerHTML = '';
+    
+    dreams.forEach((dream, index) => {
+      const card = document.createElement('div');
+      card.className = 'dream-card';
+      
+      // Apply fade-in animation to this specific card
+      card.style.animation = 'fadeIn 0.6s ease-out';
+  
+      card.innerHTML = `
+        <h3>${dream.title || 'Untitled Dream'}</h3>
+        <div class="date">${new Date(dream.date).toLocaleString()}</div>
+        <p>${dream.content.replace(/\n/g, '<br>')}</p>
+        ${dream.tags && dream.tags.length ? `<div class="tags">Tags: ${dream.tags.join(', ')}</div>` : ''}
+        <button onclick="deleteDream(${index})">Delete</button>
+      `;
+      dreamsList.appendChild(card);
+    });
+  }
 
 function addDream(e) {
-    e.preventDefault();
-    alert('Form submitted - starting save process');  // Debug: Confirms submit triggered
-  
-    const tags = Array.from(document.querySelectorAll('#dream-form input[type="checkbox"]:checked'))
-      .map(cb => cb.value);
-  
-    const newDream = {
-      title: titleInput.value.trim(),
-      content: contentInput.value.trim(),
-      tags,
-      date: new Date().toISOString()
-    };
-  
-    if (newDream.content) {
-      dreams.unshift(newDream);
-      saveDreams();
-      renderDreams();
-      alert('Dream saved successfully!');  // Debug: Confirms save happened
-    } else {
-      alert('No content entered - dream not saved. Please add a description.');  // Debug: If skipping save
-    }
-  
-    form.reset();
-    form.classList.add('hidden');
+  e.preventDefault();
+  alert('Form submitted - starting save process');  // Debug
+
+  const tags = Array.from(document.querySelectorAll('#dream-form input[type="checkbox"]:checked'))
+    .map(cb => cb.value);
+
+  const newDream = {
+    title: titleInput.value.trim(),
+    content: contentInput.value.trim(),
+    tags,
+    date: new Date().toISOString()
+  };
+
+  if (newDream.content) {
+    dreams.unshift(newDream); // Add to beginning (newest first)
+    saveDreams();
+    renderDreams();
+    alert('Dream saved successfully!');  // Debug
+  } else {
+    alert('No content entered - dream not saved. Please add a description.');
   }
+
+  form.reset();
+  form.classList.add('hidden');
+}
 
 window.deleteDream = function(index) {
   if (confirm('Delete this dream?')) {
@@ -72,5 +74,5 @@ cancelBtn.onclick = () => {
 };
 form.onsubmit = addDream;
 
-// Initial render
+// Load dreams when page opens
 renderDreams();

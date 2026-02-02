@@ -30,25 +30,31 @@ card.style.animation = 'fadeIn 0.6s ease-out';
 }
 
 function addDream(e) {
-  e.preventDefault();
-  const tags = Array.from(document.querySelectorAll('#dream-form input[type="checkbox"]:checked'))
-    .map(cb => cb.value);
-
-  const newDream = {
-    title: titleInput.value.trim(),
-    content: contentInput.value.trim(),
-    tags,
-    date: new Date().toISOString()
-  };
-
-  if (newDream.content) {
-    dreams.unshift(newDream); // newest first
-    saveDreams();
-    renderDreams();
+    e.preventDefault();
+    alert('Form submitted - starting save process');  // Debug: Confirms submit triggered
+  
+    const tags = Array.from(document.querySelectorAll('#dream-form input[type="checkbox"]:checked'))
+      .map(cb => cb.value);
+  
+    const newDream = {
+      title: titleInput.value.trim(),
+      content: contentInput.value.trim(),
+      tags,
+      date: new Date().toISOString()
+    };
+  
+    if (newDream.content) {
+      dreams.unshift(newDream);
+      saveDreams();
+      renderDreams();
+      alert('Dream saved successfully!');  // Debug: Confirms save happened
+    } else {
+      alert('No content entered - dream not saved. Please add a description.');  // Debug: If skipping save
+    }
+  
     form.reset();
     form.classList.add('hidden');
   }
-}
 
 window.deleteDream = function(index) {
   if (confirm('Delete this dream?')) {

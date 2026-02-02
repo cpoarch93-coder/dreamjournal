@@ -122,19 +122,29 @@
   }
   
   .tags label {
-    background: rgba(192, 132, 252, 0.15);
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: none;
+  }
+  
+  .tags span {
+    margin-left: 0.4rem;
     padding: 0.6rem 1.2rem;
     border-radius: 50px;
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s;
+    background: rgba(192, 132, 252, 0.15);
     border: 1px solid rgba(192, 132, 252, 0.3);
   }
   
-  .tags input:checked + span {  /* Note: labels wrap inputs */
+  .tags input:checked + span {
     background: var(--purple-pink);
     color: white;
     border-color: var(--purple-pink);
+  }
   }
   
   .form-buttons {

@@ -1,0 +1,20 @@
+{
+    "name": "Dream Journal",
+    "short_name": "Dreams",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0f0c29",
+    "theme_color": "#00f0ff",
+    "icons": [
+      {
+        "src": "https://via.placeholder.com/192/0f0c29/00f0ff?text=DJ",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "https://via.placeholder.com/512/0f0c29/00f0ff?text=DJ",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
